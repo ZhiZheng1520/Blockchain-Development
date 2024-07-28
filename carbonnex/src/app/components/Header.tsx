@@ -1,15 +1,57 @@
-// app/components/Header.tsx
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from './Header.module.css';
+import { Connect } from './Connect';
 
-import React from "react";
-import { Connect } from "./Connect";
-
-export function Header() {
+const Header: React.FC = () => {
   return (
-    <header className="navbar flex justify-between p-4 pt-0">
-      <h1 className="text-xl font-bold">😊</h1>
-      <div className="flex gap-2">
-        <Connect />
-      </div>
+    <header className={styles.header}>
+      <nav className={styles.nav}>
+        <div className={styles.logo}>
+          <Link href="/">
+            <Image src="/CarbonNex.png" alt="Logo" width={50} height={50} />
+          </Link>
+        </div>
+        <ul className={styles.navList}>
+          <li className={styles.navItem}>
+            <Link href="/">Home</Link>
+          </li>
+          <li className={styles.navItem}>
+            <Link href="/trade">Trade</Link>
+          </li>
+          <li className={`${styles.navItem} ${styles.hasSubNav}`}>
+            <Link href="/finance">Finance</Link>
+            <ul className={styles.subNavList}>
+              <li className={styles.subNavItem}>
+                <Link href="/finance/staking">Staking</Link>
+              </li>
+              <li className={styles.subNavItem}>
+                <Link href="/finance/loan">Loan</Link>
+              </li>
+            </ul>
+          </li>
+          <li className={styles.navItem}>
+            <Link href="/nft">NFT</Link>
+          </li>
+          <li className={`${styles.navItem} ${styles.hasSubNav}`}>
+            <Link href="/support">Support</Link>
+            <ul className={styles.subNavList}>
+              <li className={styles.subNavItem}>
+                <Link href="/support/about-us">About Us</Link>
+              </li>
+              <li className={styles.subNavItem}>
+                <Link href="/support/contact-us">Contact&nbsp;Us</Link>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div className={styles.connectWrapper}>
+          <Connect />
+        </div>
+      </nav>
     </header>
   );
-}
+};
+
+export default Header;

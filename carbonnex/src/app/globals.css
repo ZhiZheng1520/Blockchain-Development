@@ -24,10 +24,30 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+#__next {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.footer-dark {
+  background-color: #000; /* Set to black */
+  color: white;
+  padding: 1rem 0;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
 }

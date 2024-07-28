@@ -1,0 +1,70 @@
+.welcomeSection {
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(18, 18, 18);
+  color: rgb(255, 255, 255);
+  display: flex;
+  margin-bottom: 150px;
+  padding: 100px 100px 150px;
+}
+
+@media (max-width: 991px) {
+  .welcomeSection {
+    flex-direction: column;
+    justify-content: normal;
+  }
+}
+
+.contentWrapper {
+  text-align: left;
+}
+
+@media (max-width: 991px) {
+  .contentWrapper {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+}
+
+.title {
+  font-size: 45px;
+  margin-bottom: 39px;
+}
+
+.description {
+  margin: 30px 0 69px;
+}
+
+.ctaButton {
+  all: unset;
+  font-size: 20px;
+  background-color: rgb(76, 153, 0); /* Light green background color */
+  border-radius: 5px;
+  color: rgb(255, 255, 255); /* Dark text color */
+  cursor: pointer;
+  padding: 15px 30px;
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.ctaButton:hover {
+  background-color: rgb(0, 100, 0); /* Dark green background color on hover */
+  color: rgb(255, 255, 255); /* White text color on hover */
+}
+
+@media (max-width: 991px) {
+  .ctaButton {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+
+.imageWrapper {
+  max-width: 500px;
+  width: 100%;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
