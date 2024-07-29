@@ -14,7 +14,7 @@ const App: React.FC = () => {
           title="Welcome to CarbonNex"
           description="A Decentralised Carbon Credit Exchange Platform"
           ctaText="Get Started"
-          imageSrc="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F72c80f114dc149019051b6852a9e3b7a"
+          imageSrc="Cute.png"
         />
       </main>
       <Footer />

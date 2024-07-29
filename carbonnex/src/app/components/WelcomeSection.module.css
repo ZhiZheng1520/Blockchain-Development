@@ -1,11 +1,11 @@
 .welcomeSection {
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(18, 18, 18);
+  background-color: rgb(20, 32, 34);
   color: rgb(255, 255, 255);
   display: flex;
   margin-bottom: 150px;
-  padding: 100px 100px 150px;
+  padding: 50px 100px 0px;
 }
 
 @media (max-width: 991px) {
@@ -19,7 +19,7 @@
   text-align: left;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1000px) {
   .contentWrapper {
     margin-bottom: 30px;
     text-align: center;

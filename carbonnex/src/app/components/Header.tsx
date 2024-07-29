@@ -18,7 +18,7 @@ const Header: React.FC = () => {
             <Link href="/">Home</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/trade">Trade</Link>
+            <Link href="/marketplace">Marketplace</Link>
           </li>
           <li className={`${styles.navItem} ${styles.hasSubNav}`}>
             <Link href="/finance">Finance</Link>
@@ -31,8 +31,24 @@ const Header: React.FC = () => {
               </li>
             </ul>
           </li>
-          <li className={styles.navItem}>
-            <Link href="/nft">NFT</Link>
+          <li className={`${styles.navItem} ${styles.hasSubNav}`}>
+            <Link href="/rewards">Rewards</Link>
+            <ul className={styles.subNavList}>
+              <li className={styles.subNavItem}>
+                <Link href="/rewards/ranking">Ranking</Link>
+              </li>
+              <li className={styles.subNavItem}>
+                <Link href="/rewards/nft">NFT</Link>
+              </li>
+            </ul>
+          </li>
+          <li className={`${styles.navItem} ${styles.hasSubNav}`}>
+            <Link href="/tools">Tools</Link>
+            <ul className={styles.subNavList}>
+              <li className={styles.subNavItem}>
+                <Link href="/tools/carbon-footprint-tracker">Carbon Footprint Tracker</Link>
+              </li>
+            </ul>
           </li>
           <li className={`${styles.navItem} ${styles.hasSubNav}`}>
             <Link href="/support">Support</Link>
@@ -42,6 +58,20 @@ const Header: React.FC = () => {
               </li>
               <li className={styles.subNavItem}>
                 <Link href="/support/contact-us">Contact&nbsp;Us</Link>
+              </li>
+            </ul>
+          </li>
+          <li className={`${styles.navItem} ${styles.hasSubNav}`}>
+            <Link href="/profile">Profile</Link>
+            <ul className={styles.subNavList}>
+              <li className={styles.subNavItem}>
+                <Link href="/profile/view-profile">View Profile</Link>
+              </li>
+              <li className={styles.subNavItem}>
+                <Link href="/profile/settings">Settings</Link>
+              </li>
+              <li className={styles.subNavItem}>
+                <Link href="/profile/kyc">KYC Approval</Link>
               </li>
             </ul>
           </li>

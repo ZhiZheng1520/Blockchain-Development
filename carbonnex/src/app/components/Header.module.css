@@ -55,14 +55,15 @@
   left: 0;
   background: #444; /* Change background color as needed */
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
-  padding: 0rem; /* Add padding to create a box-like appearance */
+  padding: 0.5rem 0; /* Add padding to create a box-like appearance */
   border-radius: 8px; /* Add border radius to make it more box-like */
   z-index: 10; /* Ensure the dropdown appears above other elements */
-  width: 130px; /* Adjust width as needed */
+  min-width: 130px; /* Minimum width */
+  white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .subNavItem {
-  padding: 0rem 0rem;
+  padding: 0; /* Remove padding to use link's padding */
   width: 100%; /* Ensure subNavItem fills the width of subNavList */
 }
 
