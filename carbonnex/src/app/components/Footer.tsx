@@ -10,7 +10,7 @@ export function Footer() {
           <div className="row">
             <div className="col-12 col-md text-center">
               <p className="d-block my-3">
-                Copyright © LiangAcademy.com | All rights reserved.
+                Copyright © 2024 CarbonNex.com  | All rights reserved.
               </p>
             </div>
           </div>
