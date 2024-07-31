@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './WelcomeSection.module.css';
+import styles from './styles/WelcomeSection.module.css';
 
 interface WelcomeSectionProps {
   title: string;

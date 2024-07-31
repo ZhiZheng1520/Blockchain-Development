@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './Header.module.css';
+import styles from './styles/Header.module.css';
 import { Connect } from './Connect';
 
 const Header: React.FC = () => {

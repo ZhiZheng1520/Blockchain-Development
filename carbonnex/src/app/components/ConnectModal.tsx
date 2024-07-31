@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import styles from './ConnectModal.module.css';
+import styles from './styles/ConnectModal.module.css';
 
 // Add the type declaration for `window.ethereum` at the top of the file
 declare global {
