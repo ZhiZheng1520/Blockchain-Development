@@ -32,7 +32,7 @@ const Header: React.FC = () => {
             </ul>
           </li>
           <li className={`${styles.navItem} ${styles.hasSubNav}`}>
-            <Link href="http://localhost:3000/rewards">Rewards</Link>
+            <Link href="/rewards">Rewards</Link>
             <ul className={styles.subNavList}>
               <li className={styles.subNavItem}>
                 <Link href="/rewards/ranking">Ranking</Link>
