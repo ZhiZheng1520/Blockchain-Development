@@ -4,7 +4,7 @@ import Header from '../../components/Header';
 import {Footer} from '../../components/Footer';
 import WelcomeSection from '../../components/WelcomeSection';
 
-const App: React.FC = () => {
+const nft: React.FC = () => {
   const ctaText = "Check this out";
   const imageSrc = "/rewards.png"; // Ensure this path is correct and the image exists in the public folder
   const title = "Welcome to the Rewards Page";
@@ -29,4 +29,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default nft;
