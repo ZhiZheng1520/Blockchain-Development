@@ -4,10 +4,10 @@ import Header from '../../components/Header';
 import {Footer} from '../../components/Footer';
 import WelcomeSection from '../../components/WelcomeSection';
 
-const staking: React.FC = () => {
+const rank: React.FC = () => {
   const ctaText = "Check this out";
   const imageSrc = "/rewards.png"; // Ensure this path is correct and the image exists in the public folder
-  const title = "Welcome to the Staking Page";
+  const title = "Welcome to the Ranking Page";
   const description = "Congratulations..you have been awarded for....";
 
   return (
@@ -29,4 +29,4 @@ const staking: React.FC = () => {
   );
 };
 
-export default staking;
+export default rank;
