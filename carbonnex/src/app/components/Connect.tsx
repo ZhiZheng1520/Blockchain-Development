@@ -1,8 +1,10 @@
-// app/components/Connect.tsx
-
 import React from "react";
 
-export function Connect() {
+interface ConnectProps {
+  onConnectClick: () => void;
+}
+
+export function Connect({ onConnectClick }: ConnectProps) {
   return (
     <div>
       <w3m-button
@@ -10,6 +12,7 @@ export function Connect() {
         balance="hide"
         size="sm"
         loadingLabel="Connecting"
+        onClick={onConnectClick}
       />
     </div>
   );
