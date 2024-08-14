@@ -14,6 +14,13 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, onClose, 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Check if KYC Verification No is "user_verified"
+    if (kycNumber.trim() !== "user_verified") {
+      alert("KYC verification incorrect, please contact Admin.");
+      return;
+    }
+
     onSubmit({ username, phone, idNumber, kycNumber });
   };
 
@@ -66,7 +73,8 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({ isOpen, onClose, 
             />
           </div>
           <div className="flex justify-end">
-            <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">Submit</button>
+            <button type="submit" className="bg-green-500 text-black px-4 py-2 rounded">Submit</button>
+            <button type="button" className="ml-2 bg-red-500 text-black px-4 py-2 rounded" onClick={onClose}>Close</button>
           </div>
         </form>
       </div>

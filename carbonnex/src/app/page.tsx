@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import Header from './components/Header';
 import { Footer } from './components/Footer';
 import WelcomeSection from './components/WelcomeSection';
-import { ConnectModal } from './components/ConnectModal';
+import ConnectModal from './components/ConnectModal';
 import RegistrationModal from './components/RegistrationModal';
 
 const App: React.FC = () => {
@@ -15,14 +15,13 @@ const App: React.FC = () => {
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
 
   useEffect(() => {
-    // Check if the wallet is already connected
     if (window.ethereum && window.ethereum.selectedAddress) {
       setIsWalletConnected(true);
       checkAddressMatch(window.ethereum.selectedAddress);
     }
   }, []);
 
-  const checkAddressMatch = async (walletAddress: string) => {
+  const checkAddressMatch = async (walletAddress) => {
     try {
       const response = await fetch(`/api/get-users?address=${walletAddress}`, {
         method: 'GET',
@@ -33,57 +32,75 @@ const App: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
-        const dbAddress = data[0]?.address.toLowerCase().trim();
 
-        if (walletAddress.toLowerCase().trim() === dbAddress) {
+        if (data.length === 0) {
+          setIsAddressMatch(false);
+          setIsRegistrationOpen(true);
+          return;
+        }
+
+        let matchFound = false;
+
+        // Iterate over each user in the response data
+        data.forEach((user) => {
+          const dbAddress = user.address.toLowerCase().trim();
+          if (walletAddress.toLowerCase().trim() === dbAddress) {
+            matchFound = true;
+          }
+        });
+
+        if (matchFound) {
           setIsAddressMatch(true);
-          setIsRegistrationOpen(false);  // Don't open the registration modal
+          setIsRegistrationOpen(false);
         } else {
           setIsAddressMatch(false);
-          setIsRegistrationOpen(true);  // Open the registration modal
+          setIsRegistrationOpen(true);
         }
       } else {
         console.error('Failed to fetch address from the database');
         setIsAddressMatch(false);
-        setIsRegistrationOpen(true);  // Open the registration modal
+        setIsRegistrationOpen(true);
       }
     } catch (error) {
       console.error('An error occurred while checking the address match', error);
       setIsAddressMatch(false);
-      setIsRegistrationOpen(true);  // Open the registration modal
+      setIsRegistrationOpen(true);
     }
   };
 
+
+
   const handleMarketplaceClick = () => {
     if (!isWalletConnected) {
-      setIsModalOpen(true); // Open the modal if the wallet is not connected
+      setIsModalOpen(true);
     } else if (isAddressMatch) {
-      // Navigate to marketplace if the wallet is connected and addresses match
       window.location.href = "/marketplace";
     } else {
-      // Handle the case where the addresses do not match
       alert("The connected wallet address does not match our records.");
     }
   };
 
-  const handleRegistrationSubmit = async (formData: { username: string; email: string }) => {
+  const handleRegistrationSubmit = async (formData: { username: string; phone: string; idNumber: string; kycNumber: string }) => {
     try {
-      const response = await fetch('/api/update-user', {
+      const walletAddress = window.ethereum.selectedAddress; // Get the MetaMask address
+
+      const response = await fetch('/api/add-user', {  // Ensure this path matches your API route
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, address: walletAddress }),
       });
 
       if (response.ok) {
         alert('Registration successful!');
         setIsRegistrationOpen(false); // Close the registration modal
+        window.location.reload(); // Refresh the window
       } else {
-        console.error('Failed to update user');
+        console.error('Failed to add user');
       }
     } catch (error) {
-      console.error('An error occurred while updating the user', error);
+      console.error('An error occurred while adding the user', error);
     }
   };
 
@@ -117,7 +134,6 @@ const App: React.FC = () => {
         />
       )}
 
-      {/* Render the Registration Modal only if the wallet address does not match */}
       <RegistrationModal
         isOpen={isRegistrationOpen}
         onClose={() => setIsRegistrationOpen(false)}
