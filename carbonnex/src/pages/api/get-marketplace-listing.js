@@ -2,7 +2,7 @@ import db from '../../../db';
 
 const getUsers = async (req, res) => {
   try {
-    const result = await db.query('SELECT * FROM marketplace_list');
+    const result = await db.query('SELECT * FROM marketplace_listing');
     res.status(200).json(result.rows);
   } catch (err) {
     console.error('Error fetching users:', err);
