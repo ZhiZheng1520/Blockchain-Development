@@ -1,5 +1,3 @@
-//contracts/CarbonNexToken.sol
-
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -8,6 +6,6 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract CarbonNexToken is ERC20, Ownable {
     constructor() ERC20("CarbonNexToken", "CNX") Ownable(msg.sender) {
-        _mint(msg.sender, 100000 * 10 ** 18);
+       _mint(msg.sender, 100000 * 10 ** 18);
     }
 }

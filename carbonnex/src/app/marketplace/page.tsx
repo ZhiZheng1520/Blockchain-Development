@@ -4,6 +4,7 @@ import styles from '../components/styles/AdvertiserList.module.css';
 import Header from '../components/Header';
 import React, { useEffect, useState } from 'react';
 import MarketplaceWelcome from '../components/MarketplaceWelcome';
+import { BuyToken }  from '../components/BuyToken'
 
 const AdvertiserList: React.FC = () => {
 
@@ -76,11 +77,7 @@ const AdvertiserList: React.FC = () => {
                                 <div className={styles.advertiserName}>{advertiser.username}</div>
                                 <div className={styles.price}>{advertiser.ask_price} ETH</div>
                                 <div className={styles.available}>{advertiser.available_amount} CNX</div>
-                                <button
-                                    className={`${styles.actionButton} ${advertiser.to_buy_sell === 'buy' ? styles.sellCnxButton : styles.buyEthButton}`}
-                                >
-                                    {advertiser.to_buy_sell === 'sell' ? 'Buy CNX' : 'Sell ETH'}
-                                </button>
+                                <BuyToken />
                             </div>
                         ))}
                     </div>
