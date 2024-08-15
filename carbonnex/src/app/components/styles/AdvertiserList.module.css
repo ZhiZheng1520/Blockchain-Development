@@ -97,3 +97,88 @@
     background-color: gray;
     cursor: pointer;
 }
+
+/* Styles for the buttons */
+/*.header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}*/
+
+.buyButton, .sellButton {
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 0 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.buyButton.inactive, .sellButton.inactive {
+    background-color: grey;
+}
+
+.sellFormContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px; /* Adjust as necessary */
+}
+
+.sellForm {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 800px; /* Adjust width as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputGroup {
+    /*display: flex;*/
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+.sellTitle {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.sellText {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.inputField {
+    width: 48%; /* Adjust width to fit two fields side by side */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.formActions {
+    /*display: flex;*/
+    justify-content: space-between;
+    width: 100%;
+}
+
+.listButton, .cancelButton {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    font-size: 16px;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.listButton:hover, .cancelButton:hover {
+    background-color: #e0e0e0;
+}

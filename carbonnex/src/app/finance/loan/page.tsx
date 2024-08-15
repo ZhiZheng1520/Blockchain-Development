@@ -4,7 +4,7 @@ import Header from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import WelcomeSection from '../../components/WelcomeSection';
 
-const loan: React.FC = () => {
+const Loan: React.FC = () => {
   const ctaText = "Check this out";
   const imageSrc = "/bitcoin.png"; // Ensure this path is correct and the image exists in the public folder
   const title = "Welcome to the Loan Page";
@@ -21,18 +21,20 @@ const loan: React.FC = () => {
           imageSrc={imageSrc}
         />
         <section className="py-8 px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">What is a Loan?</h2>
-          <p className="text-center max-w-screen-md mx-auto">We only loan CarbonNex (CNX) with secure collateral. Please read the terms and conditions carefully before applying for a loan.</p>
+          <h2 className="text-4xl font-bold text-center mb-4">What is a Loan?</h2>
+          <p className="text-center max-w-screen-md mx-auto text-xl">We only loan CarbonNex (CNX) with secure collateral. Please read the terms and conditions carefully before applying for a loan.</p>
         </section>
         <section className="py-8 px-4 bg-gray-800">
-          <h2 className="text-3xl font-bold text-center mb-4">What to Do?</h2>
+          <h2 className="text-4xl font-bold text-center mb-4">What to Do?</h2>
           <div className="bg-gray-700 p-6 rounded-lg shadow-lg max-w-screen-lg mx-auto">
-            <p className="text-center">If you wish to loan, please read the Terms and Conditions (T&Cs) provided here.</p>
-            <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-full">Read T&C</button>
+            <p className="text-center mb-4">If you wish to loan, please read the Terms and Conditions (T&Cs) provided here.</p>
+            <div className="flex justify-center">
+              <button className="bg-blue-500 text-white py-2 px-4 rounded-full">Read T&C</button>
+            </div>
           </div>
         </section>
         <section className="py-8 px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">Loan Overview</h2>
+          <h2 className="text-4xl font-bold text-center mb-4">Loan Overview</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-screen-lg mx-auto">
             <div className="bg-gray-700 p-6 rounded-lg shadow-lg">
               <p className="mb-4"><strong>1 CNX</strong> → $1000 (Wallet)</p>
@@ -51,7 +53,7 @@ const loan: React.FC = () => {
           </div>
         </section>
         <section className="py-8 px-4 bg-gray-800">
-          <h2 className="text-3xl font-bold text-center mb-4">All Loans</h2>
+          <h2 className="text-4xl font-bold text-center mb-4">All Loans</h2>
           <div className="overflow-x-auto">
             <table className="min-w-full bg-gray-700 rounded-lg">
               <thead className="bg-gray-600">
@@ -85,4 +87,4 @@ const loan: React.FC = () => {
   );
 };
 
-export default loan;
+export default Loan;
