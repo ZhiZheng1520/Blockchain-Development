@@ -1,6 +1,7 @@
-"use client"; // Add this line at the very top
+"use client";
 
 import React, { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
 import { ToastContainer } from 'react-toastify';
 import Header from './components/Header';
 import { Footer } from './components/Footer';
@@ -13,15 +14,34 @@ const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddressMatch, setIsAddressMatch] = useState<boolean | null>(null);
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+  const [tokenBalance, setTokenBalance] = useState<string | null>(null);
+
+  const tokenContractAddress = "YOUR_CONTRACT_ADDRESS"; // Replace with your token contract address
+  const tokenABI = [
+    // Add your ERC20 ABI here
+    "function balanceOf(address owner) view returns (uint256)",
+  ];
 
   useEffect(() => {
     if (window.ethereum && window.ethereum.selectedAddress) {
       setIsWalletConnected(true);
       checkAddressMatch(window.ethereum.selectedAddress);
+      fetchTokenBalance(window.ethereum.selectedAddress); // Fetch token balance on connect
     }
-  }, []);
+  }, [isWalletConnected]);
 
-  const checkAddressMatch = async (walletAddress) => {
+  const fetchTokenBalance = async (walletAddress: string) => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const contract = new ethers.Contract(tokenContractAddress, tokenABI, provider);
+      const balance = await contract.balanceOf(walletAddress);
+      setTokenBalance(ethers.utils.formatUnits(balance, 18)); // Adjust decimals if needed
+    } catch (error) {
+      console.error('Failed to fetch token balance', error);
+    }
+  };
+
+  const checkAddressMatch = async (walletAddress: string) => {
     try {
       const response = await fetch(`/api/get-users?address=${walletAddress}`, {
         method: 'GET',
@@ -41,7 +61,6 @@ const App: React.FC = () => {
 
         let matchFound = false;
 
-        // Iterate over each user in the response data
         data.forEach((user) => {
           const dbAddress = user.address.toLowerCase().trim();
           if (walletAddress.toLowerCase().trim() === dbAddress) {
@@ -68,8 +87,6 @@ const App: React.FC = () => {
     }
   };
 
-
-
   const handleMarketplaceClick = () => {
     if (!isWalletConnected) {
       setIsModalOpen(true);
@@ -82,9 +99,9 @@ const App: React.FC = () => {
 
   const handleRegistrationSubmit = async (formData: { username: string; phone: string; idNumber: string; kycNumber: string }) => {
     try {
-      const walletAddress = window.ethereum.selectedAddress; // Get the MetaMask address
+      const walletAddress = window.ethereum.selectedAddress;
 
-      const response = await fetch('/api/add-user', {  // Ensure this path matches your API route
+      const response = await fetch('/api/add-user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -104,6 +121,14 @@ const App: React.FC = () => {
     }
   };
 
+  const handleConnectModalClose = (connected: boolean) => {
+    setIsModalOpen(false);
+    if (connected) {
+      setIsWalletConnected(true);
+      fetchTokenBalance(window.ethereum.selectedAddress);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header onMarketplaceClick={handleMarketplaceClick} />
@@ -113,6 +138,12 @@ const App: React.FC = () => {
           {isAddressMatch
             ? 'Your MetaMask address matches with our records.'
             : 'Your MetaMask address does not match our records.'}
+        </div>
+      )}
+
+      {isWalletConnected && tokenBalance !== null && (
+        <div className="p-4 text-center bg-blue-500 text-white">
+          Your token balance: {tokenBalance}
         </div>
       )}
 
@@ -130,7 +161,7 @@ const App: React.FC = () => {
       {isModalOpen && !isWalletConnected && (
         <ConnectModal
           setIsModalOpen={setIsModalOpen}
-          setIsConnected={setIsWalletConnected}
+          setIsConnected={handleConnectModalClose}
         />
       )}
 

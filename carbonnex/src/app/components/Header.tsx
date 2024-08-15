@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './styles/Header.module.css';
-import { Connect } from './Connect';
+import { ConnectButton } from './ConnectButton';
 import { ConnectModal } from './ConnectModal';
 
 const Header: React.FC = () => {
@@ -36,24 +36,7 @@ const Header: React.FC = () => {
     }
   };
 
-  const connectToMetaMask = async () => {
-    try {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      setConnectedAccount(accounts[0]);
-      setIsModalOpen(false);
 
-      // Refresh the page after successful connection
-      window.location.reload();
-    } catch (error) {
-      console.error("MetaMask connection error:", error);
-      alert("Failed to connect to MetaMask. Please try again.");
-    }
-  };
-
-  const disconnectWallet = () => {
-    setConnectedAccount(null);
-//     alert("Disconnected from MetaMask.");
-  };
 
   return (
     <header className={styles.header}>
@@ -126,14 +109,9 @@ const Header: React.FC = () => {
             </ul>
           </li>
         </ul>
-        <div className={styles.connectWrapper}>
-          {connectedAccount ? (
-            <div onClick={disconnectWallet}>
-              <w3m-button label={connectedAccount} balance="hide" size="sm" loadingLabel="Disconnecting" />
-            </div>
-          ) : (
-            <Connect onConnectClick={connectToMetaMask} />
-          )}
+         <div className={styles.connectWrapper}>
+                  <ConnectButton />
+
         </div>
       </nav>
 
@@ -141,7 +119,7 @@ const Header: React.FC = () => {
         <ConnectModal
           setIsModalOpen={setIsModalOpen}
           setIsConnected={setConnectedAccount}
-          connectToMetaMask={connectToMetaMask}
+          connectToMetaMask={() => {}}
         />
       )}
     </header>
