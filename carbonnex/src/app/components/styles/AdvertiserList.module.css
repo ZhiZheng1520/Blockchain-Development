@@ -26,12 +26,14 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     padding: 0.5rem 0;
     border-bottom: 1px solid #ddd;
+    color: black;
 }
 
 .advertiserHeader {
     font-weight: bold;
     text-align: left;
     padding: 0.5rem;
+    color: black;
 }
 
 .advertiserRow {
@@ -39,6 +41,7 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
     padding: 0.5rem 0;
+    color: black;
 }
 
 .advertiserName, .price, .available, .actionButton {
@@ -135,6 +138,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: black;
 }
 
 .inputGroup {
@@ -181,4 +185,30 @@
 
 .listButton:hover, .cancelButton:hover {
     background-color: #e0e0e0;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 0 auto;
+    background-color:black;
+    border-radius: 8px;
+    max-width: 1200px;
+}
+
+.buyContainer,
+.sellContainer {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid white;
+    color: black;
+}
+
+.sectionTitle {
+    font-size: 24px;
+    color: black;
+    margin-bottom: 20px;
 }
