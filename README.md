@@ -49,8 +49,10 @@ CarbonNex is a carbon credit marketplace exchange aimed at saving the environmen
    Install the necessary packages for the Carbonnex project:
    ```bash
    npm install pg
+   
    ```bash
    npm install ethers
+   
    ```bash
    npm install next
    
