@@ -1,6 +1,6 @@
 # CarbonNex Decentralized Application (Dapp)
 
-Carbonnex is a carbon credit aimed at saving the environment. This guide will walk you through building and installing the necessary components to use CarbonNex Decentralized Application (Dapp).
+CarbonNex is a carbon credit marketplace exchange aimed at saving the environment. This guide will walk you through building and installing the necessary components to use CarbonNex Decentralized Application (Dapp).
 
 ## Build and Install
 
@@ -49,7 +49,9 @@ Carbonnex is a carbon credit aimed at saving the environment. This guide will wa
    Install the necessary packages for the Carbonnex project:
    ```bash
    npm install pg
+   ```bash
    npm install ethers
+   ```bash
    npm install next
    
 4. **Run the Development Server**
@@ -63,15 +65,19 @@ Carbonnex is a carbon credit aimed at saving the environment. This guide will wa
 
 
 ## Home Page
-The Home Page is the first page of the system. Users can access various features from the header, including:
+The Home Page is the first page of the system. 
+Users can access various features from the header, including:
 - Marketplace
-- Finance
-- Rewards
-- Support (Contact Us, About Us)
+- Finance (Staking & Loan)
+- Rewards (Ranking & NFT)
+- Support (Contact Us & About Us)
 - Profile
 
+## Marketplace
+Users can buy or sell CarbonNex credits in the marketplace.
+
 ## Finance
-Users can view and manage their financial details related to Carbonnex.
+Users can view their Ranking & NFT Badges.
 
 ## Rewards
 Users can view and claim their rewards.
@@ -79,8 +85,5 @@ Users can view and claim their rewards.
 ## Support
 Users can contact support or learn more about Carbonnex through the About Us section.
 
-## Marketplace
-Users can buy or sell Carbonnex credits in the marketplace.
-
 ## Profile
-Users can manage their profile settings.
+Users can view their profile details.
