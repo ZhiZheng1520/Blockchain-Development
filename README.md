@@ -1,6 +1,7 @@
 # CarbonNex Decentralized Application (Dapp)
 
-CarbonNex is a carbon credit marketplace exchange aimed at saving the environment. This guide will walk you through building and installing the necessary components to use CarbonNex Decentralized Application (Dapp).
+CarbonNex is a carbon credit marketplace exchange aimed at saving the environment. 
+This guide will walk you through building and installing the necessary components to use CarbonNex Decentralized Application (Dapp).
 
 ## Build and Install
 
