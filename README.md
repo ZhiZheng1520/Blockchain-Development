@@ -49,11 +49,7 @@ CarbonNex is a carbon credit marketplace exchange aimed at saving the environmen
    Install the necessary packages for the Carbonnex project:
    ```bash
    npm install pg
-   
-   ```bash
    npm install ethers
-   
-   ```bash
    npm install next
    
 4. **Run the Development Server**
@@ -65,10 +61,13 @@ CarbonNex is a carbon credit marketplace exchange aimed at saving the environmen
    Open your browser and go to http://localhost:3000/.
    Note: Keep the terminal open while the server is running.
 
+# Below is the component of the system:
 
 ## Home Page
 The Home Page is the first page of the system. 
-Users can access various features from the header, including:
+The system will first prompt the user to log in. 
+If the user has not previously signed up or logged in, the admin will need to create an account for them.
+Users can access various features from the header after login, including:
 - Marketplace
 - Finance (Staking & Loan)
 - Rewards (Ranking & NFT)
@@ -76,16 +75,21 @@ Users can access various features from the header, including:
 - Profile
 
 ## Marketplace
-Users can buy or sell CarbonNex credits in the marketplace.
+In the Marketplace, users can buy or sell CarbonNex credits. 
+This feature facilitates the trading of credits, enabling users to participate in the carbon credit market efficiently.
 
 ## Finance
-Users can view their Ranking & NFT Badges.
+The Finance section enables users to view their rankings and NFT badges. 
+It also provides access to financial tools for managing CarbonNex credits, including staking and loan options.
 
 ## Rewards
-Users can view and claim their rewards.
+Users can view and claim their rewards in the Rewards section. 
+This includes checking their current rewards status and redeeming any rewards they have earned through their activities.
 
 ## Support
-Users can contact support or learn more about Carbonnex through the About Us section.
+The Support section offers users access to assistance and information. 
+Users can contact support through the "Contact Us" page or learn more about CarbonNex through the "About Us" page.
 
 ## Profile
-Users can view their profile details.
+In the Profile section, users can view and manage their personal information. 
+This includes updating their profile details and accessing account settings.
