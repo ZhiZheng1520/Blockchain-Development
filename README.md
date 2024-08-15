@@ -9,27 +9,27 @@ Carbonnex is a carbon credit aimed at saving the environment. This guide will wa
 1. **Open Terminal**  
    Open your terminal to get started.
 
-2. **Change Directory to Backend Folder**
+2. **Change Directory to Backend Folder**  
    Navigate to the backend folder by using the `cd` command. Example:
    ```bash
    cd /path/to/Backend
 
-4. **Change Directory to Backend Folder**
+4. **Change Directory to Backend Folder**  
    Run the following command to initialize the project:
    ```bash
    npm init -y
 
-5. **Install Hardhat**
+5. **Install Hardhat**  
    Install Hardhat as a development dependency:
    ```bash
    npm install --save-dev hardhat
 
-6. **Initialize Hardhat**
+6. **Initialize Hardhat**  
    Set up Hardhat with the following command:
    ```bash
    npx hardhat init
 
-7. **Start the Hardhat Node**
+7. **Start the Hardhat Node**  
    Launch the Hardhat network node:
    ```bash
    npx hardhat node
