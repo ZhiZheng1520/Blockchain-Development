@@ -49,7 +49,7 @@ CarbonNex is a carbon credit marketplace exchange aimed at saving the environmen
    Install the necessary packages for the Carbonnex project:
    ```bash
    npm install @chakra-ui/react @emotion/react @emotion/styled @hookform/resolvers @radix-ui/react-dialog @radix-ui/react-label @radix-ui/react-navigation-menu @radix-ui/react-slot @radix-ui/react-toast @supabase/ssr @supabase/supabase-js @tanstack/react-query @walletconnect/core @web3modal/wagmi class-variance-authority clsx framer-motion lucide-react next pg react react-dom react-hook-form react-icons react-toastify ssl tailwind-merge tailwindcss-animate viem wagmi zod
-
+   ```bash
    npm install --save-dev @types/node @types/react @types/react-dom eslint eslint-config-next postcss tailwindcss typescript
    
 4. **Run the Development Server**
