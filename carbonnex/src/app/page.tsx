@@ -1,177 +1,76 @@
 "use client";
+import { ConnectButton } from "@/components/ConnectButton";
+import { Logo } from "@/components/Images";
+import { useAccount, useDisconnect } from "wagmi";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { getLoginCredentials } from "@/database/function";
+import { useToast } from "@/components/ui/use-toast";
 
-import React, { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
-import { ToastContainer } from 'react-toastify';
-import Header from './components/Header';
-import { Footer } from './components/Footer';
-import WelcomeSection from './components/WelcomeSection';
-import ConnectModal from './components/ConnectModal';
-import RegistrationModal from './components/RegistrationModal';
-
-const App: React.FC = () => {
-  const [isWalletConnected, setIsWalletConnected] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAddressMatch, setIsAddressMatch] = useState<boolean | null>(null);
-  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
-  const [tokenBalance, setTokenBalance] = useState<string | null>(null);
-
-  const tokenContractAddress = "YOUR_CONTRACT_ADDRESS"; // Replace with your token contract address
-  const tokenABI = [
-    // Add your ERC20 ABI here
-    "function balanceOf(address owner) view returns (uint256)",
-  ];
+export default function Page() {
+  const { address, isConnected } = useAccount();
+  const { disconnect } = useDisconnect();
+  const router = useRouter();
+  const { toast } = useToast();
 
   useEffect(() => {
-    if (window.ethereum && window.ethereum.selectedAddress) {
-      setIsWalletConnected(true);
-      checkAddressMatch(window.ethereum.selectedAddress);
-      fetchTokenBalance(window.ethereum.selectedAddress); // Fetch token balance on connect
-    }
-  }, [isWalletConnected]);
+    const login = async () => {
+      const response = await getLoginCredentials(address as string);
 
-  const fetchTokenBalance = async (walletAddress: string) => {
-    try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const contract = new ethers.Contract(tokenContractAddress, tokenABI, provider);
-      const balance = await contract.balanceOf(walletAddress);
-      setTokenBalance(ethers.utils.formatUnits(balance, 18)); // Adjust decimals if needed
-    } catch (error) {
-      console.error('Failed to fetch token balance', error);
-    }
-  };
+      if (response) {
+        if (response.length > 0) {
+          localStorage.setItem("id", response[0].id.toString());
+          localStorage.setItem(
+            "organisation_name",
+            response[0].organisation_name
+          );
+          localStorage.setItem("registration_id", response[0].registration_id);
+          localStorage.setItem("role", response[0].role);
 
-  const checkAddressMatch = async (walletAddress: string) => {
-    try {
-      const response = await fetch(`/api/get-users?address=${walletAddress}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-
-        if (data.length === 0) {
-          setIsAddressMatch(false);
-          setIsRegistrationOpen(true);
-          return;
-        }
-
-        let matchFound = false;
-
-        data.forEach((user) => {
-          const dbAddress = user.address.toLowerCase().trim();
-          if (walletAddress.toLowerCase().trim() === dbAddress) {
-            matchFound = true;
+          if (response[0].role == "Organisation") {
+            router.push("/organisation");
+          } else if (response[0].role == "Administrator") {
+            router.push("/administrator");
+          } else {
+            toast({
+              title: "The role does not exist.",
+            });
+            disconnect();
+            router.refresh();
           }
-        });
-
-        if (matchFound) {
-          setIsAddressMatch(true);
-          setIsRegistrationOpen(false);
         } else {
-          setIsAddressMatch(false);
-          setIsRegistrationOpen(true);
+          toast({
+            title: "The address is not authorised.",
+          });
+          disconnect();
         }
-      } else {
-        console.error('Failed to fetch address from the database');
-        setIsAddressMatch(false);
-        setIsRegistrationOpen(true);
       }
-    } catch (error) {
-      console.error('An error occurred while checking the address match', error);
-      setIsAddressMatch(false);
-      setIsRegistrationOpen(true);
+      router.refresh();
+    };
+
+    if (isConnected) {
+      login();
     }
-  };
-
-  const handleMarketplaceClick = () => {
-    if (!isWalletConnected) {
-      setIsModalOpen(true);
-    } else if (isAddressMatch) {
-      window.location.href = "/marketplace";
-    } else {
-      alert("The connected wallet address does not match our records.");
-    }
-  };
-
-  const handleRegistrationSubmit = async (formData: { username: string; phone: string; idNumber: string; kycNumber: string }) => {
-    try {
-      const walletAddress = window.ethereum.selectedAddress;
-
-      const response = await fetch('/api/add-user', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...formData, address: walletAddress }),
-      });
-
-      if (response.ok) {
-        alert('Registration successful!');
-        setIsRegistrationOpen(false); // Close the registration modal
-        window.location.reload(); // Refresh the window
-      } else {
-        console.error('Failed to add user');
-      }
-    } catch (error) {
-      console.error('An error occurred while adding the user', error);
-    }
-  };
-
-  const handleConnectModalClose = (connected: boolean) => {
-    setIsModalOpen(false);
-    if (connected) {
-      setIsWalletConnected(true);
-      fetchTokenBalance(window.ethereum.selectedAddress);
-    }
-  };
+  }, [isConnected]);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header onMarketplaceClick={handleMarketplaceClick} />
-
-      {isWalletConnected && isAddressMatch !== null && (
-        <div className={`p-4 text-center ${isAddressMatch ? 'bg-green-500' : 'bg-red-500'} text-white`}>
-          {isAddressMatch
-            ? 'Your MetaMask address matches with our records.'
-            : 'Your MetaMask address does not match our records.'}
+    <div className="flex min-h-screen bg-emerald-950 text-white">
+      <div className="container mx-auto flex items-center justify-between px-4 md:px-6 lg:px-8">
+        <div className="max-w-xl space-y-6">
+          <h1 className="text-6xl font-bold tracking-tight">
+            Welcome to Carbonex
+          </h1>
+          <p className="text-lg">
+            A Decentralised Carbon Credit Exchange Platform
+          </p>
+          <div>
+            <ConnectButton />
+          </div>
         </div>
-      )}
-
-      {isWalletConnected && tokenBalance !== null && (
-        <div className="p-4 text-center bg-blue-500 text-white">
-          Your token balance: {tokenBalance}
+        <div>
+          <Logo className="min-h-screen w-400" />
         </div>
-      )}
-
-      <main className="flex-grow">
-        <WelcomeSection
-          title="Welcome to CarbonNex"
-          description="A Decentralised Carbon Credit Exchange Platform"
-          ctaText="Get Started"
-          imageSrc="Cute.png"
-        />
-      </main>
-      <Footer />
-      <ToastContainer />
-
-      {isModalOpen && !isWalletConnected && (
-        <ConnectModal
-          setIsModalOpen={setIsModalOpen}
-          setIsConnected={handleConnectModalClose}
-        />
-      )}
-
-      <RegistrationModal
-        isOpen={isRegistrationOpen}
-        onClose={() => setIsRegistrationOpen(false)}
-        onSubmit={handleRegistrationSubmit}
-      />
+      </div>
     </div>
   );
-};
-
-export default App;
+}
