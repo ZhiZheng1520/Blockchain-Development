@@ -49,7 +49,38 @@ CarbonNex is a carbon credit marketplace exchange aimed at saving the environmen
    Install the necessary packages for the Carbonnex project:
    
    ```bash
-   npm install @chakra-ui/react @emotion/react @emotion/styled @hookform/resolvers @radix-ui/react-dialog @radix-ui/react-label @radix-ui/react-navigation-menu @radix-ui/react-slot @radix-ui/react-toast @supabase/ssr @supabase/supabase-js @tanstack/react-query @walletconnect/core @web3modal/wagmi class-variance-authority clsx framer-motion lucide-react next pg react react-dom react-hook-form react-icons react-toastify ssl tailwind-merge tailwindcss-animate viem wagmi zod
+   npm install @chakra-ui/react  
+   @emotion/react  
+   @emotion/styled  
+   @hookform/resolvers  
+   @radix-ui/react-dialog  
+   @radix-ui/react-label  
+   @radix-ui/react-navigation-menu  
+   @radix-ui/react-slot  
+   @radix-ui/react-toast  
+   @supabase/ssr  
+   @supabase/supabase-js  
+   @tanstack/react-query  
+   @walletconnect/core  
+   @web3modal/wagmi  
+   class-variance-authority  
+   clsx  
+   framer-motion  
+   lucide-react  
+   next  
+   pg  
+   react  
+   react-dom  
+   react-hook-form  
+   react-icons  
+   react-toastify  
+   ssl  
+   tailwind-merge  
+   tailwindcss-animate  
+   viem  
+   wagmi  
+   zod  
+   
 5. **Run the Development Server**
    Start the development server:
    ```bash
@@ -67,22 +98,12 @@ The Home Page is the first page of the system.
    If the user has not previously signed up or logged in, the admin will need to create an account for them.  
    Users can access various features from the header after login, including:
 - Marketplace
-- Finance (Staking & Loan)
-- Rewards (Ranking & NFT)
 - Support (Contact Us & About Us)
 - Profile
 
 ## Marketplace
 In the Marketplace, users can buy or sell CarbonNex credits.  
    This feature facilitates the trading of credits, enabling users to participate in the carbon credit market efficiently.
-
-## Finance
-The Finance section enables users to view their rankings and NFT badges.  
-   It also provides access to financial tools for managing CarbonNex credits, including staking and loan options.
-
-## Rewards
-Users can view and claim their rewards in the Rewards section.  
-   This includes checking their current rewards status and redeeming any rewards they have earned through their activities.
 
 ## Support
 The Support section offers users access to assistance and information.  
